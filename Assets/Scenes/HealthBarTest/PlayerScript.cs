@@ -46,8 +46,8 @@ public class PlayerScript : MonoBehaviour
 	private bool onCD;							// Flag to disable damage/enable from the damage trigger
 
 	// To be moved as properties of a player class (singleton?)
-	public float blockValue;					// The percent of damage mititgated by the block
-	public float dodgeChance = 1f;				// Dodge chance
+	private float blockValue;					// The percent of damage mititgated by the block
+	private float dodgeChance = 1f;				// Dodge chance
 
 	#endregion
 
