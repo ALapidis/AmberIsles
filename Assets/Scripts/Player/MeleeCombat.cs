@@ -33,25 +33,6 @@ public class MeleeCombat : MonoBehaviour
 	#endregion
 
 
-/* 		Ability Cooldown Psudo Code */
-//		if (mouse click & Character.Cooldown = False)
-//		Character.cTimer = 0
-//		Character.cEndTime = txtEndTimer.text
-//		Character.Cooldown = True
-//		CooldownBar.Width = 0
-//		CooldownBar.AnimationFrame = 1
-//
-//		If Character.Cooldown = True
-//		Character.cTimer = Character.cTimer + dt
-//		CooldownBar.Width = (CooldownBar.MaxWidth / Character.cEndTime) * Character.cTimer
-//
-//		If Character.cTimer >= Character.cEndTime
-//		Character.cTimer = -1
-//		Character.Cooldown = False
-//		CooldownBar.Width = CooldownBar.MaxWidth
-//		CooldownBar.AnimationFrame = 0
-
-
 	void Start() {
 
 		//initalize the needed scripts script

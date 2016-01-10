@@ -2,11 +2,14 @@
 using System.Collections;
 using UnityEngine.UI;
 
+/* 																									*/
+/* This class handles the updating of the players health bar, stamina bar, exp bar and portrait.	*/
+/* 																									*/ 
+
 public class PlayerHealthbarController : MonoBehaviour
 {
 	#region Fields
 
-	public float speed; 										// The players movement speed
 	private int currentHealth; 									// The players current health
 	private int currentStamina; 								// The players current stamina
 
@@ -86,7 +89,7 @@ public class PlayerHealthbarController : MonoBehaviour
 
 		// Handle player health and movement
 		HandleHealthbar ();
-		HandleMovement ();
+		//HandleMovement ();
 
 		// Debug damage to player for testing healthbar
 		if (Input.GetKeyDown (KeyCode.Space)) {
@@ -169,15 +172,7 @@ public class PlayerHealthbarController : MonoBehaviour
 			visualHealth.color = new Color (255.0f, 0.0f, 0.0f, 1.0f);
 		}
 	}
-
-	// Handles player movement
-	private void HandleMovement () {
-
-		float translation = speed * Time.deltaTime;
-
-		transform.Translate (new Vector3 (Input.GetAxis ("Horizontal") * translation, 0, Input.GetAxis ("Vertical") * translation));
-	}
-
+		
 	// Handle trigger events
 	void OnTriggerStay (Collider other) {
 

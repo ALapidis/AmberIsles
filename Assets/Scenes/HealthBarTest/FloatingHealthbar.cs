@@ -37,11 +37,11 @@ public class FloatingHealthbar : MonoBehaviour {
 
 	void LateUpdate () {
 
-		// Check if the current health is less than the max and if the healthbar is disabled 
-		if (enemy.enemyCurrLife < enemy.enemyMaxLife && !enemyHealthSlider.gameObject.activeSelf ) {
+		// Check if the current health is less than the max AND if the healthbar is disabled AND  the enemy tag is not Destructable
+		if (enemy.enemyCurrLife < enemy.enemyMaxLife && !enemyHealthSlider.gameObject.activeSelf && enemy.tag != "Destructable") {
 			
 			EnableHealthBar();
-		} else if (enemy.enemyCurrLife == enemy.enemyMaxLife && enemyHealthSlider.gameObject.activeSelf) {
+		} else if (enemy.enemyCurrLife == enemy.enemyMaxLife && enemyHealthSlider.gameObject.activeSelf && enemy.tag != "Destructable") {
 
 			DisableHealthBar();
 		}
@@ -80,7 +80,6 @@ public class FloatingHealthbar : MonoBehaviour {
 	// Re-parent back to the gameobject and disables the floatingHealthbarSlider
 	void DisableHealthBar() {
 		
-		enemyHealthSlider.gameObject.transform.SetParent(gameObject.transform, false);
 		enemyHealthSlider.gameObject.SetActive(false);
 		enemyHealthSlider.transform.localPosition = Vector3.zero;
 	}
@@ -89,7 +88,6 @@ public class FloatingHealthbar : MonoBehaviour {
 	void EnableHealthBar() {
 		
 		enemyHealthSlider.gameObject.SetActive(true);
-		enemyHealthSlider.gameObject.transform.SetParent(floatingHealthBarCanvas.transform, false);
 		enemyHealthSlider.transform.localPosition = Vector3.zero;
 	}
 
