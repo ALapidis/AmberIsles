@@ -19,6 +19,7 @@ public class UI_HealthBar : MonoBehaviour
 		// Get the current parent's transform.
         transformCache = GetComponent<Transform>();
 		targetMob = mob.GetComponent<MeleeEnemy>();
+
 		// Assign the health bars current and max values.
 		enemyHealthSlider.maxValue = targetMob.maxHealth;
 		enemyHealthSlider.value = targetMob.health;

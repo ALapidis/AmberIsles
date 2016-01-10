@@ -2,52 +2,54 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class PlayerScript : MonoBehaviour
+public class PlayerHealthbarController : MonoBehaviour
 {
 	#region Fields
 
-	public float speed; 						// The players movement speed
-	private int currentHealth; 					// The players current health
-	public int maxHealth; 						// The players max health
-	public float healthLerpSpeed; 				// The time to multiply by Time.deltaTime to accelerate the lerp
-	public int healthRegen;						// How much health is recovered per cycle
-	public float healthRegenSpeed;				// How long between health recovery cycles 
-
-	private int currentStamina; 				// The players current stamina
-	public int maxStamina; 						// The players max stamina
-	public float staminaLerpSpeed; 				// The time to multiply by Time.deltaTime to accelerate the lerp
-	public int staminaRegen;					// How much stamina is recovered per cycle
-	public float staminaRegenSpeed;				// How long between stamina recovery cycles 
-
-	public RectTransform healthTransform; 		// The health's transform, this is used for moving the object
-	public Text healthText; 					// The health text
-	public Text healthMaxText; 					// The health max text
-	public Image visualHealth; 					// The health's image, this is used for color changing
-
-	public RectTransform staminaTransform; 		// The stamina's transform, this is used for moving the object
-	public Text staminaText; 					// The stamina text
-	public Text staminaMaxText; 				// The stamina max text
-	public Image visualStamina; 				// The stamina's image, this is used for color changing
-
-	public Canvas canvas; 						// The Canvas, this is used for it's scale mode
-
-	private Animator animator; 					// Reference to the Animator component.
-
-	public Image damageImage;					// Reference to the texture used for the damage flash
-	public Color flashColour;  					// The colour the damageImage is set to, to flash
-	public float flashSpeed = 5f;               // The speed the damageImage will fade at
-
-	private float currentHPValue; 				// Current value of the health in 0 to 1
-	private float currentSPValue; 				// Current value of the stamina in 0 to 1
-	private bool damaged;
+	public float speed; 										// The players movement speed
+	private int currentHealth; 									// The players current health
+	private int currentStamina; 								// The players current stamina
 
 	// For purposes of demo scene
-	public float coolDown;						// The time in seconds to cooldown between taking damage from the damage trigger
-	private bool onCD;							// Flag to disable damage/enable from the damage trigger
+	public float coolDown;										// The time in seconds to cooldown between taking damage from the damage trigger
+	private bool onCD;											// Flag to disable damage/enable from the damage trigger
 
-	// To be moved as properties of a player class (singleton?)
-	private float blockValue;					// The percent of damage mititgated by the block
-	private float dodgeChance = 1f;				// Dodge chance
+	[Header ("Player Health")]
+	public int maxHealth; 										// The players max health
+	public float healthLerpSpeed; 								// The time to multiply by Time.deltaTime to accelerate the lerp
+	public int healthRegen;										// How much health is recovered per cycle
+	public float healthRegenSpeed;								// How long between health recovery cycles 
+
+	[Header ("Player Stamina")]
+	public int maxStamina; 										// The players max stamina
+	public float staminaLerpSpeed; 								// The time to multiply by Time.deltaTime to accelerate the lerp
+	public int staminaRegen;									// How much stamina is recovered per cycle
+	public float staminaRegenSpeed;								// How long between stamina recovery cycles 
+
+	[Header ("GUI Elements")]
+	public RectTransform healthTransform; 						// The health's transform, this is used for moving the object
+	public Text healthText; 									// The health text
+	public Text healthMaxText; 									// The health max text
+	public Image visualHealth; 									// The health's image, this is used for color changing
+	public RectTransform staminaTransform; 						// The stamina's transform, this is used for moving the object
+	public Text staminaText; 									// The stamina text
+	public Text staminaMaxText; 								// The stamina max text
+	public Image visualStamina; 								// The stamina's image, this is used for color changing
+	public Canvas canvas; 										// The Canvas, this is used for it's scale mode
+
+	private Animator animator; 									// Reference to the Animator component.
+
+	private Image damageImage;									// Reference to the texture used for the damage flash
+	private Color flashColour = new Color (1, 0, 0, 0.25f);  	// The colour the damageImage is set to, to flash
+	private float flashSpeed = 5f;           				    // The speed the damageImage will fade at
+
+	private float currentHPValue; 								// Current value of the health in 0 to 1
+	private float currentSPValue; 								// Current value of the stamina in 0 to 1
+	private bool damaged;
+
+	// To be moved as properties of a player class?)
+	private float blockValue;									// The percent of damage mititgated by the block
+	private float dodgeChance = 1f;								// Dodge chance
 
 	#endregion
 
@@ -67,14 +69,11 @@ public class PlayerScript : MonoBehaviour
 
 	#endregion
 
-	void Awake () {
-
-		animator = GetComponent <Animator>();
-	}
-
-
 	// Use this for initialization
 	void Start () {
+
+		animator = GetComponent <Animator>();
+		damageImage = GameObject.Find("DamagedFlash").GetComponent<Image>();
 
 		// Initalize current health and regeneration coroutines
 		currentHealth = maxHealth; 
@@ -82,8 +81,7 @@ public class PlayerScript : MonoBehaviour
 		StartCoroutine(HealthRegen(healthRegen, healthRegenSpeed));
 		StartCoroutine(StaminaRegen(staminaRegen, staminaRegenSpeed));
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 
 		// Handle player health and movement
@@ -103,7 +101,8 @@ public class PlayerScript : MonoBehaviour
 			Stamina -= 5;
 		}
 
-		if (damaged) { // damage screen vingette flash
+		// damage screen vingette flash
+		if (damaged) { 
 			damageImage.color = flashColour;
 		} else {
 			damageImage.color = Color.Lerp (damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
