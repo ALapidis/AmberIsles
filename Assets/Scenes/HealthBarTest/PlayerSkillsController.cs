@@ -6,7 +6,7 @@ using System.Collections;
 /* It will handle the construction of a list, populate it from the skills the player has assigned to each button, then handle	*/
 /* the display and upkeep of those buttons as well as passing their effects to the combat manager when triggered.				*/
 
-public class PlayerAbilitiesController : MonoBehaviour {
+public class PlayerSkillsController : MonoBehaviour {
 
 
 	/* 		Ability Cooldown Psudo Code */
