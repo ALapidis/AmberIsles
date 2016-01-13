@@ -33,8 +33,8 @@ public class PlayerMovementController : MonoBehaviour
 	void Update () {
 
 		// Get input vector from joystick controls
-		//inputVec = new Vector3(CrossPlatformInputManager.GetAxisRaw("Horizontal"), 0, CrossPlatformInputManager.GetAxisRaw("Vertical"));
-		inputVec = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+		inputVec = new Vector3(CrossPlatformInputManager.GetAxisRaw("Horizontal"), 0, CrossPlatformInputManager.GetAxisRaw("Vertical"));
+
 
 		if (inputVec != Vector3.zero) {
 
@@ -90,10 +90,8 @@ public class PlayerMovementController : MonoBehaviour
 		Vector3 right= new Vector3(forward.z, 0, -forward.x);
 
 		// Directional inputs
-		//float v = CrossPlatformInputManager.GetAxisRaw("Vertical");
-		//float h = CrossPlatformInputManager.GetAxisRaw("Horizontal");
-		float v = Input.GetAxisRaw("Vertical");
-		float h = Input.GetAxisRaw("Horizontal");
+		float v = CrossPlatformInputManager.GetAxisRaw("Vertical");
+		float h = CrossPlatformInputManager.GetAxisRaw("Horizontal");
 
 		// Target direction relative to the camera
 		targetDirection = h * right + v * forward;

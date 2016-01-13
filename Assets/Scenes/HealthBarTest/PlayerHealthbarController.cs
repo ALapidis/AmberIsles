@@ -39,8 +39,8 @@ public class PlayerHealthbarController : MonoBehaviour
 	public Text staminaMaxText; 								// The stamina max text
 	public Image visualStamina; 								// The stamina's image, this is used for color changing
 	public Canvas canvas; 										// The Canvas, this is used for it's scale mode
-
-	private Animator animator; 									// Reference to the Animator component.
+	[HideInInspector]
+	public Animator animator; 									// Reference to the Animator component.
 
 	private Image damageImage;									// Reference to the texture used for the damage flash
 	private Color flashColour = new Color (1, 0, 0, 0.25f);  	// The colour the damageImage is set to, to flash
@@ -51,8 +51,9 @@ public class PlayerHealthbarController : MonoBehaviour
 	private bool damaged;
 
 	// To be moved as properties of a player class?)
-	private float blockValue;									// The percent of damage mititgated by the block
-	private float dodgeChance = 1f;								// Dodge chance
+	private float blockValue = 5;									// The percent of damage mititgated by the block
+	[HideInInspector]
+	public float dodgeChance = 1f;								// Dodge chance
 
 	#endregion
 

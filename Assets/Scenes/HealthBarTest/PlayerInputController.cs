@@ -14,8 +14,7 @@ public class PlayerInputController : MonoBehaviour
 	#region Fields
 
 	private Animator animator;
-	private CharacterController controller;
-	private PlayerHealth playerHealth;
+	private PlayerHealthbarController playerHealth;
 	private PlayerMovementController movementController;
 	private WeaponManager wpnManager;
 	public XWeaponTrail SimpleTrail;
@@ -26,7 +25,7 @@ public class PlayerInputController : MonoBehaviour
 	private float rollDodgeCooldownTime = 0.75f;
 	private bool rolldodging = false;
 
-	[HideInInspector]
+
 	public GameObject opponent = null;		           // Get the opponent variable from the MeleeEnemy.cs script if you're being chased
 	public float fieldOfViewAngle = 110f;              // Number of degrees, centred on forward, for the enemy see.
 	public float range; 					           // Weapons attack range
@@ -46,13 +45,12 @@ public class PlayerInputController : MonoBehaviour
 
 	void Start () {
 		// Initalize required components
-		controller = GetComponent<CharacterController>();
 		animator = GetComponent<Animator>();
 		movementController = GetComponent<PlayerMovementController>();
 
 		//initalize the needed scripts script
 		wpnManager = GetComponent <WeaponManager>();
-		playerHealth = GetComponent <PlayerHealth>();
+		playerHealth = GetComponent <PlayerHealthbarController>();
 
 		SimpleTrail.Init();
 		//SimpleTrail.Deactivate ();
@@ -62,6 +60,11 @@ public class PlayerInputController : MonoBehaviour
 
 	void Update () {
 
+		// Softlock if in tripple the range of the weapon's attack AND you have a target AND you're in combat
+		// This is only true for melee, some other system will be needed for magic and ranged
+		SoftLock(3);
+
+		// Charge'd Attack
 		if (CrossPlatformInputManager.GetButton("Attack")) {
 			chargeing = true;
 
@@ -73,34 +76,19 @@ public class PlayerInputController : MonoBehaviour
 			}
 		}
 
+		// Basic Attack Chain Logic
 		if(CrossPlatformInputManager.GetButtonUp("Attack")) {
 
-			chargedRing.fillAmount = 0f;
+			SoftLock(1)	;			
 
-			// Player auto-LookAt if in range
-			if(opponent != null) { 
-
-				Vector3 direction = opponent.transform.position - transform.position;
-				float angle = Vector3.Angle(direction, transform.forward);
-
-				if((angle < fieldOfViewAngle * 0.5f)) {
-
-					RaycastHit hit;
-
-					// ... and if a raycast towards the opponent hits something...
-					if(Physics.Raycast(transform.position + transform.up, direction.normalized, out hit, range)) {
-
-						transform.LookAt (opponent.transform.position);
-					}
-				}            
-			}
-
-			if (playerHealth.currentStamina >= 5) {
+			// If you have enough stamina
+			if (playerHealth.Stamina >= 5) {
 
 				if (chargeTime >= 0.8) {
 
 					animator.SetTrigger("ChargedAttack");
-					playerHealth.StaminaCost(10);
+				
+				// If no potential attacks are playing, play the default first attack 
 				} else if (chargeTime < 0.8					
 					&& !animator.GetCurrentAnimatorStateInfo (0).IsName ("1H_Light_Combo1")
 					&& !animator.GetCurrentAnimatorStateInfo (0).IsName ("1H_Light_Combo2")
@@ -110,18 +98,16 @@ public class PlayerInputController : MonoBehaviour
 
 					animator.SetTrigger("Attack1");
 					playerHealth.StaminaCost(5);
+
 				} else if (chargeTime < 0.8 && animator.GetCurrentAnimatorStateInfo (0).IsName ("1H_Light_Combo1")) {
 
 					animator.SetTrigger ("Attack2");
-					playerHealth.StaminaCost(5);
 				} else if (chargeTime < 0.8 && animator.GetCurrentAnimatorStateInfo (0).IsName ("1H_Light_Combo2")) {
 
 					animator.SetTrigger ("Attack3");
-					playerHealth.StaminaCost(5);
 				} else if (chargeTime < 0.8 && animator.GetCurrentAnimatorStateInfo (0).IsName ("1H_Medium_Combo2")) {
 
 					animator.SetTrigger ("Attack3");
-					playerHealth.StaminaCost(5);
 				}
 
 				CombatCooldownTimer();
@@ -129,11 +115,13 @@ public class PlayerInputController : MonoBehaviour
 				wpnManager.WeaponSheath();
 			} else {
 
-				playerHealth.OutOfStaminaFlash();
+				Debug.Log("Out of Stamina");
+				//playerHealth.OutOfStaminaFlash();
 			}
 
 			// Reset charge info
 			chargeTime = 0;
+			chargedRing.fillAmount = 0f;
 			chargeing = false;
 		}
 
@@ -170,13 +158,13 @@ public class PlayerInputController : MonoBehaviour
 		}
 
 		//if (CrossPlatformInputManager.GetButton("Evade")) 
-		if (Input.GetButton("Evade")) {
+		if (CrossPlatformInputManager.GetButton("Evade")) {
 			
 			// If moving the directional stick while holding Evade ...
 			if ((animator.GetFloat("Speed") >= 0.1) && !rolldodging) {
 
 				// ... and you have enough stamina
-				if (playerHealth.currentStamina >= rollCost) {
+				if (playerHealth.Stamina >= rollCost) {
 
 					Vector3 forward = transform.forward;
 					float angle = Vector3.Dot(movementController.inputVec, forward);
@@ -197,7 +185,8 @@ public class PlayerInputController : MonoBehaviour
 					}
 				} else {
 
-					playerHealth.OutOfStaminaFlash();
+					Debug.Log("Out of Stamina");
+					//playerHealth.OutOfStaminaFlash();
 				}
 
 				RollDodgeCooldownTimer();
@@ -251,5 +240,26 @@ public class PlayerInputController : MonoBehaviour
 	void CombatCooldownTimer() {
 		
 		combatCoolDownTimer = Time.time + combatCoolDownTime;
+	}
+
+	// Autoface the target if you're in combat, have a target, and are within weapon range * dist
+	void SoftLock(int dist) {
+
+		if(opponent != null && animator.GetBool("InCombat")) { 
+
+			Vector3 direction = opponent.transform.position - transform.position;
+			float angle = Vector3.Angle(direction, transform.forward);
+
+			if((angle < fieldOfViewAngle * 0.5f)) {
+
+				RaycastHit hit;
+
+				// ... and if a raycast towards the opponent hits something...
+				if(Physics.Raycast(transform.position + transform.up, direction.normalized, out hit, (range * dist))) {
+
+					transform.LookAt (opponent.transform.position);
+				}
+			}            
+		}
 	}
 }

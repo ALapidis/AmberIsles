@@ -3,32 +3,40 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEditor;
 
+/* 																										*/
+/* This class handles the enabling, and disabling of the floating healthbar uGUI slider under the 		*/
+/* NPC. The script also passes the npc's health to the slider, and updates it's screenspace position	*/
+/* based on the 3D object's world space. Healthbar is disabled once NPC's health regenerates to full.	*/ 
+
 public class FloatingHealthbar : MonoBehaviour {
 
 	#region Properties
 
-	private Enemy enemy;											// Enemy.cs script pointer
+	public MeleeEnemy enemy;											// Enemy.cs script pointer
 	private Transform transformCache;								// Temporary variable to update after each frame to move the healthbar prefab to.
 	private Mesh mobMesh;
 	private Rect offset;											// Screenspace boundaries of the gameobject for use in offsetting the healthbar
+	private Camera viewCamera;										// Gets the main camera for worldspacetoscreenspace calculations.
+	private Quaternion rotation;
 
-	public Camera viewCamera;										// Gets the main camera for worldspacetoscreenspace calculations.
-	public GameObject floatingHealthBarCanvas;						// The canvas to parent the slider to once enabled
+	public Canvas floatingHealthBarCanvas;						// The canvas to parent the slider to once enabled
 	public Slider enemyHealthSlider;                                // Reference to the Enemy health bar Slider UI element.	
 
 	#endregion
 
 	void Start () {
+		
+		viewCamera = Camera.main;
 
 		// pointer to the Enemy,cs script component
-		enemy = gameObject.GetComponent<Enemy>();
+		enemy = gameObject.GetComponent<MeleeEnemy>();
 
-		// Store the transform of the slider object
+			// Store the transform of the slider object
 		transformCache = enemyHealthSlider.GetComponent<Transform>();
 
 		// Initalize the health bar's current and maximum health
-		enemyHealthSlider.maxValue = enemy.enemyMaxLife;
-		enemyHealthSlider.value = enemy.enemyCurrLife;
+		enemyHealthSlider.maxValue = enemy.maxHealth;
+		enemyHealthSlider.value = enemy.health;
 
 		// Get the bounds of the gameobject's render mesh and pass the height to offset
 		mobMesh = gameObject.GetComponent<MeshFilter>().mesh;
@@ -38,34 +46,28 @@ public class FloatingHealthbar : MonoBehaviour {
 	void LateUpdate () {
 
 		// Check if the current health is less than the max AND if the healthbar is disabled AND  the enemy tag is not Destructable
-		if (enemy.enemyCurrLife < enemy.enemyMaxLife && !enemyHealthSlider.gameObject.activeSelf && enemy.tag != "Destructable") {
-			
-			EnableHealthBar();
-		} else if (enemy.enemyCurrLife == enemy.enemyMaxLife && enemyHealthSlider.gameObject.activeSelf && enemy.tag != "Destructable") {
+		if (enemyHealthSlider != null) {
+			if (enemy.health < enemy.maxHealth && !enemyHealthSlider.gameObject.activeSelf && enemy.tag != "Destructable") {
+				
+				EnableHealthBar();
+			} else if (enemy.health == enemy.maxHealth && enemyHealthSlider.gameObject.activeSelf && enemy.tag != "Destructable") {
 
-			DisableHealthBar();
+				DisableHealthBar();
+			} 
 		}
+
 
 		if (enemy != null) {
 			
 			if (transformCache != null) {
 
 				// Update the health bar's value after every frame.
-				enemyHealthSlider.value = enemy.enemyCurrLife; 
-
-				if (enemy.enemyCurrLife <= 0) {
-
-					Destroy(enemyHealthSlider.gameObject);
-				}
+				enemyHealthSlider.value = enemy.health; 
 
 				// Move the healthbar to the parent's location after every frame.
 				transformCache.localPosition = WorldToScreen(enemy.transform.position);
 			}
-		} else {
-			
-			//If the parent is destroyed via death, there is no need for this health bar to exist.
-			Destroy(enemyHealthSlider.gameObject);
-		}
+		} 
 	}
 
 	// Gets the mesh origin and farthest extents as a Rect
@@ -79,7 +81,8 @@ public class FloatingHealthbar : MonoBehaviour {
 
 	// Re-parent back to the gameobject and disables the floatingHealthbarSlider
 	void DisableHealthBar() {
-		
+
+		enemyHealthSlider.gameObject.transform.SetParent(gameObject.transform, false);
 		enemyHealthSlider.gameObject.SetActive(false);
 		enemyHealthSlider.transform.localPosition = Vector3.zero;
 	}
@@ -88,6 +91,7 @@ public class FloatingHealthbar : MonoBehaviour {
 	void EnableHealthBar() {
 		
 		enemyHealthSlider.gameObject.SetActive(true);
+		enemyHealthSlider.gameObject.transform.SetParent(floatingHealthBarCanvas.transform, false);
 		enemyHealthSlider.transform.localPosition = Vector3.zero;
 	}
 

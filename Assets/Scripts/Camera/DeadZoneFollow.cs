@@ -1,19 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/* 																											*/
+/* This class handles the tracking of the character with proper offset, and deadzone. 						*/
+/* 																											*/ 
+
 public class DeadZoneFollow : MonoBehaviour 
 {
-	public float deadZone = 5f;			// Dead Zone the camera will not track
+	public float deadZone = 2.5f;			// Dead Zone the camera will not track
 	private float deadZoneY = 0f;		// Dead Zone the camera will not track
 	private float Smooth = 2f;			// How smoothly the camera catches up with it's target movement in the x axis.
-	public float heightOffset = 15;		// Camera height offset
-	public float distanceOffset = -30;	// Camera distance offset (negative value in Unity 5)
+	public float heightOffset = 20;		// Camera height offset
+	public float distanceOffset = -40;	// Camera distance offset (negative value in Unity 5)
 	private Transform player;			// Reference to the player's transform.
 
 
 	void Awake () {
 		// Setting up the reference.
-		player = GameObject.Find("PlayerTemp").transform;
+		player = GameObject.Find("Player").transform;
 	}
 
 	void FixedUpdate () {

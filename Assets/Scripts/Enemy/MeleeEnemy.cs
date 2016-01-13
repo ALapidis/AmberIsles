@@ -16,16 +16,18 @@ public class MeleeEnemy : MonoBehaviour
 	public AnimationClip run, idle, die, attackClip;
 	public double impactTime = 0.36;
 	private bool _impacted;
-	private PlayerHealth opponent;
+	private PlayerHealthbarController opponent;
+	private FloatingHealthbar healthbar;
 	public float sinkSpeed = 2.5f;              // The speed at which the enemy sinks through the floor when dead.
 	bool isSinking;                             // Whether the enemy has started sinking through the floor.
 	#endregion
 	
 	void Start()
 	{
+		healthbar = GetComponent<FloatingHealthbar>();
 		health = maxHealth;
-		player = GameObject.Find ("PlayerTemp").transform;
-		opponent = player.GetComponent<PlayerHealth>();
+		player = GameObject.Find ("Player").transform;
+		opponent = player.GetComponent<PlayerHealthbarController>();
 	}
 
 	void Update()
@@ -44,7 +46,7 @@ public class MeleeEnemy : MonoBehaviour
 				GetComponent<Animation>().CrossFade (idle.name);
 			} else {
 				chase();
-				player.GetComponent<MeleeCombat>().opponent = gameObject;
+				player.GetComponent<PlayerInputController>().opponent = gameObject;
 
 				if (inRange()) 
 				{
@@ -102,9 +104,12 @@ public class MeleeEnemy : MonoBehaviour
 	// Face the player and chase after him
 	void chase()
 	{
-		transform.LookAt (player.position);
-		controller.SimpleMove (transform.forward * speed);
-		GetComponent<Animation>().CrossFade (run.name);
+		Vector3 targetPostition = new Vector3( player.position.x, this.transform.position.y, player.position.z ) ;
+
+		this.transform.LookAt( targetPostition ) ;
+
+		//controller.SimpleMove (transform.forward * speed);
+		//GetComponent<Animation>().CrossFade (run.name);
 	}
 
 	// Recieve damage 
@@ -143,6 +148,8 @@ public class MeleeEnemy : MonoBehaviour
 	{
 		// The enemy should no sink.
 		isSinking = true;
+
+		Destroy(healthbar.enemyHealthSlider.gameObject);
 
 		// After 2 seconds destory the enemy.
 		Destroy (gameObject, 2f);
