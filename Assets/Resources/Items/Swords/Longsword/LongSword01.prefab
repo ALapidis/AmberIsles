@@ -55,7 +55,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 496884}
-  - 114: {fileID: 11443236}
   m_Layer: 0
   m_Name: X-WeaponTrail
   m_TagString: Untagged
@@ -147,24 +146,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 140674}
   m_Mesh: {fileID: 4300000, guid: 27002e05a05564915aa2fbace986df11, type: 3}
---- !u!114 &11443236
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 196820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6c2c9828fec98747a1b0680f47bed80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PointStart: {fileID: 420756}
-  PointEnd: {fileID: 498990}
-  MaxFrame: 14
-  Granularity: 60
-  Fps: 60
-  MyColor: {r: 1, g: 1, b: 1, a: 1}
-  MyMaterial: {fileID: 2100000, guid: 75f756109f216ad409ff1a5ea7dd7b2c, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

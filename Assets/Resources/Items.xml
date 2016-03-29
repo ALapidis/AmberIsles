@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<ItemContainer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Consumeables>
+    <Item xsi:type="Consumeable">
+      <ItemType>CONSUMEABLE</ItemType>
+      <Quality>COMMON</Quality>
+      <SpriteNeutral>Consumeables/HealthNormal</SpriteNeutral>
+      <SpriteHighlighted>Consumeables/HealthHighlight</SpriteHighlighted>
+      <MaxSize>5</MaxSize>
+      <ItemName>Health potion</ItemName>
+      <Description>This potion restores health</Description>
+      <Health>10</Health>
+      <Mana>0</Mana>
+      <SellPrice>5</SellPrice>
+      <BuyPrice>10</BuyPrice>
+    </Item>
+    <Item xsi:type="Consumeable">
+      <ItemType>CONSUMEABLE</ItemType>
+      <Quality>COMMON</Quality>
+      <SpriteNeutral>Consumeables/ManaNormal</SpriteNeutral>
+      <SpriteHighlighted>Consumeables/ManaHighlight</SpriteHighlighted>
+      <MaxSize>5</MaxSize>
+      <ItemName>Mana Potion</ItemName>
+      <Description>This potion restores mana</Description>
+      <Health>0</Health>
+      <Mana>10</Mana>
+      <SellPrice>5</SellPrice>
+      <BuyPrice>10</BuyPrice>
+    </Item>
+  </Consumeables>
+  <Weapons>
+    <Item xsi:type="Weapon">
+      <ItemType>MAINHAND</ItemType>
+      <Quality>EPIC</Quality>
+      <SpriteNeutral>Weapons/SwordNormal</SpriteNeutral>
+      <SpriteHighlighted>Weapons/SwordHighlight</SpriteHighlighted>
+      <MaxSize>1</MaxSize>
+      <ItemName>Awesome Sword</ItemName>
+      <Description>This is an awesome sword</Description>
+      <Strength>6</Strength>
+      <Endurance>4</Endurance>
+      <Dexterity>5</Dexterity>
+      <Intellect>2</Intellect>
+      <Willpower>4</Willpower>
+      <Charisma>2</Charisma>
+      <Luck>1</Luck>
+      <AttackSpeed>5</AttackSpeed>
+      <SellPrice>5</SellPrice>
+      <BuyPrice>10</BuyPrice>
+    </Item>
+    <Item xsi:type="Weapon">
+      <ItemType>TWOHAND</ItemType>
+      <Quality>ARTIFACT</Quality>
+      <SpriteNeutral>Weapons/AxeNormal</SpriteNeutral>
+      <SpriteHighlighted>Weapons/AxeHighlight</SpriteHighlighted>
+      <MaxSize>1</MaxSize>
+      <ItemName>Awesome Axe</ItemName>
+      <Description>This is an axe</Description>
+      <Strength>6</Strength>
+      <Endurance>4</Endurance>
+      <Dexterity>5</Dexterity>
+      <Intellect>2</Intellect>
+      <Willpower>4</Willpower>
+      <Charisma>2</Charisma>
+      <Luck>1</Luck>
+      <AttackSpeed>5</AttackSpeed>
+      <SellPrice>5</SellPrice>
+      <BuyPrice>10</BuyPrice>
+    </Item>
+    <Item xsi:type="Weapon">
+      <ItemType>OFFHAND</ItemType>
+      <Quality>UNCOMMON</Quality>
+      <SpriteNeutral>Weapons/ShieldNormal</SpriteNeutral>
+      <SpriteHighlighted>Weapons/ShieldHighlight</SpriteHighlighted>
+      <MaxSize>1</MaxSize>
+      <ItemName>Iron Shield</ItemName>
+      <Description>This is an iron shield</Description>
+      <Strength>2</Strength>
+      <Endurance>4</Endurance>
+      <Dexterity>5</Dexterity>
+      <Intellect>2</Intellect>
+      <Willpower>4</Willpower>
+      <Charisma>2</Charisma>
+      <Luck>1</Luck>
+      <AttackSpeed>5</AttackSpeed>
+      <SellPrice>5</SellPrice>
+      <BuyPrice>10</BuyPrice>
+    </Item>
+  </Weapons>
+  <Equipment>
+    <Item xsi:type="Equipment">
+      <ItemType>HEAD</ItemType>
+      <Quality>UNCOMMON</Quality>
+      <SpriteNeutral>Equipment/HelmetNormal</SpriteNeutral>
+      <SpriteHighlighted>Equipment/HelmetHighlight</SpriteHighlighted>
+      <MaxSize>1</MaxSize>
+      <ItemName>Strong Helmet</ItemName>
+      <Description>This is a good helmet</Description>
+      <Strength>6</Strength>
+      <Endurance>4</Endurance>
+      <Dexterity>5</Dexterity>
+      <Intellect>2</Intellect>
+      <Willpower>4</Willpower>
+      <Charisma>2</Charisma>
+      <Luck>1</Luck>
+      <SellPrice>5</SellPrice>
+      <BuyPrice>10</BuyPrice>
+    </Item>
+    <Item xsi:type="Equipment">
+      <ItemType>CHEST</ItemType>
+      <Quality>RARE</Quality>
+      <SpriteNeutral>Equipment/ChestNormal</SpriteNeutral>
+      <SpriteHighlighted>Equipment/ChestHighlight</SpriteHighlighted>
+      <MaxSize>1</MaxSize>
+      <ItemName>Iron Chest</ItemName>
+      <Description>This is an ok chest</Description>
+      <Strength>6</Strength>
+      <Endurance>4</Endurance>
+      <Dexterity>5</Dexterity>
+      <Intellect>2</Intellect>
+      <Willpower>4</Willpower>
+      <Charisma>2</Charisma>
+      <Luck>1</Luck>
+      <SellPrice>5</SellPrice>
+      <BuyPrice>10</BuyPrice>
+    </Item>
+    <Item xsi:type="Equipment">
+      <ItemType>NECK</ItemType>
+      <Quality>LEGENDARY</Quality>
+      <SpriteNeutral>Equipment/NeckNormal</SpriteNeutral>
+      <SpriteHighlighted>Equipment/NeckHighlight</SpriteHighlighted>
+      <MaxSize>1</MaxSize>
+      <ItemName>Legendary Neck</ItemName>
+      <Description>This neck is legendary</Description>
+      <Strength>6</Strength>
+      <Endurance>4</Endurance>
+      <Dexterity>5</Dexterity>
+      <Intellect>2</Intellect>
+      <Willpower>4</Willpower>
+      <Charisma>2</Charisma>
+      <Luck>1</Luck>
+      <SellPrice>5</SellPrice>
+      <BuyPrice>10</BuyPrice>
+    </Item>
+    <Item xsi:type="Equipment">
+      <ItemType>SHOULDERS</ItemType>
+      <Quality>ARTIFACT</Quality>
+      <SpriteNeutral>Equipment/ShoulderNormal</SpriteNeutral>
+      <SpriteHighlighted>Equipment/ShoulderHighlight</SpriteHighlighted>
+      <MaxSize>1</MaxSize>
+      <ItemName>Artifact shoulders</ItemName>
+      <Description>These are epic shoulders</Description>
+       <Strength>6</Strength>
+      <Endurance>4</Endurance>
+      <Dexterity>5</Dexterity>
+      <Intellect>2</Intellect>
+      <Willpower>4</Willpower>
+      <Charisma>2</Charisma>
+      <Luck>1</Luck>
+      <SellPrice>5</SellPrice>
+      <BuyPrice>10</BuyPrice>
+    </Item>
+    <Item xsi:type="Equipment">
+      <ItemType>LEGS</ItemType>
+      <Quality>UNCOMMON</Quality>
+      <SpriteNeutral>Equipment/PantsNormal</SpriteNeutral>
+      <SpriteHighlighted>Equipment/PantsHighlight</SpriteHighlighted>
+      <MaxSize>1</MaxSize>
+      <ItemName>Simple Pants</ItemName>
+      <Description>These are simple pants</Description>
+      <Strength>6</Strength>
+      <Endurance>4</Endurance>
+      <Dexterity>5</Dexterity>
+      <Intellect>2</Intellect>
+      <Willpower>4</Willpower>
+      <Charisma>2</Charisma>
+      <Luck>1</Luck>
+      <SellPrice>5</SellPrice>
+      <BuyPrice>10</BuyPrice>
+    </Item>
+    <Item xsi:type="Equipment">
+      <ItemType>BELT</ItemType>
+      <Quality>COMMON</Quality>
+      <SpriteNeutral>Equipment/BeltNormal</SpriteNeutral>
+      <SpriteHighlighted>Equipment/BeltHighlight</SpriteHighlighted>
+      <MaxSize>1</MaxSize>
+      <ItemName>Good Belt</ItemName>
+      <Description>This is a good belt</Description>
+      <Strength>6</Strength>
+      <Endurance>4</Endurance>
+      <Dexterity>5</Dexterity>
+      <Intellect>2</Intellect>
+      <Willpower>4</Willpower>
+      <Charisma>2</Charisma>
+      <Luck>1</Luck>
+      <SellPrice>5</SellPrice>
+      <BuyPrice>10</BuyPrice>
+    </Item>
+    <Item xsi:type="Equipment">
+      <ItemType>RING</ItemType>
+      <Quality>EPIC</Quality>
+      <SpriteNeutral>Equipment/RingNormal</SpriteNeutral>
+      <SpriteHighlighted>Equipment/RingHighlight</SpriteHighlighted>
+      <MaxSize>1</MaxSize>
+      <ItemName>Ring of the mountain</ItemName>
+      <Description>This is an epic ring</Description>
+      <Strength>6</Strength>
+      <Endurance>4</Endurance>
+      <Dexterity>5</Dexterity>
+      <Intellect>2</Intellect>
+      <Willpower>4</Willpower>
+      <Charisma>2</Charisma>
+      <Luck>1</Luck>
+      <SellPrice>5</SellPrice>
+      <BuyPrice>10</BuyPrice>
+    </Item>
+    <Item xsi:type="Equipment">
+      <ItemType>BRACERS</ItemType>
+      <Quality>RARE</Quality>
+      <SpriteNeutral>Equipment/BracerNormal</SpriteNeutral>
+      <SpriteHighlighted>Equipment/BracerHighlight</SpriteHighlighted>
+      <MaxSize>1</MaxSize>
+      <ItemName>Stone bracers</ItemName>
+      <Description>These are made of stone</Description>
+      <Strength>6</Strength>
+      <Endurance>4</Endurance>
+      <Dexterity>5</Dexterity>
+      <Intellect>2</Intellect>
+      <Willpower>4</Willpower>
+      <Charisma>2</Charisma>
+      <Luck>1</Luck>
+      <SellPrice>5</SellPrice>
+      <BuyPrice>10</BuyPrice>
+    </Item>
+    <Item xsi:type="Equipment">
+      <ItemType>BOOTS</ItemType>
+      <Quality>UNCOMMON</Quality>
+      <SpriteNeutral>Equipment/BootsNormal</SpriteNeutral>
+      <SpriteHighlighted>Equipment/BootsHighlight</SpriteHighlighted>
+      <MaxSize>1</MaxSize>
+      <ItemName>Leather boots</ItemName>
+      <Description>These are made from leather</Description>
+      <Strength>6</Strength>
+      <Endurance>4</Endurance>
+      <Dexterity>5</Dexterity>
+      <Intellect>2</Intellect>
+      <Willpower>4</Willpower>
+      <Charisma>2</Charisma>
+      <Luck>1</Luck>
+      <SellPrice>5</SellPrice>
+      <BuyPrice>10</BuyPrice>
+    </Item>
+    <Item xsi:type="Equipment">
+      <ItemType>TRINKET</ItemType>
+      <Quality>RARE</Quality>
+      <SpriteNeutral>Equipment/TrinketNormal</SpriteNeutral>
+      <SpriteHighlighted>Equipment/TrinketHighlight</SpriteHighlighted>
+      <MaxSize>1</MaxSize>
+      <ItemName>Trinket of doom</ItemName>
+      <Description>This is a rare trinket</Description>
+      <Strength>6</Strength>
+      <Endurance>4</Endurance>
+      <Dexterity>5</Dexterity>
+      <Intellect>2</Intellect>
+      <Willpower>4</Willpower>
+      <Charisma>2</Charisma>
+      <Luck>1</Luck>
+      <SellPrice>5</SellPrice>
+      <BuyPrice>10</BuyPrice>
+    </Item>
+  </Equipment>
+  <Materials>
+    <Item xsi:type="CraftingMaterial">
+      <ItemType>CRAFTINGMATERIAL</ItemType>
+      <Quality>COMMON</Quality>
+      <SpriteNeutral>CraftingMaterials/WoodNormal</SpriteNeutral>
+      <SpriteHighlighted>CraftingMaterials/WoodHighlight</SpriteHighlighted>
+      <MaxSize>10</MaxSize>
+      <ItemName>Wood</ItemName>
+      <Description>This is a piece of wood</Description>
+      <SellPrice>5</SellPrice>
+      <BuyPrice>10</BuyPrice>
+    </Item>
+    <Item xsi:type="CraftingMaterial">
+      <ItemType>CRAFTINGMATERIAL</ItemType>
+      <Quality>COMMON</Quality>
+      <SpriteNeutral>CraftingMaterials/StoneNormal</SpriteNeutral>
+      <SpriteHighlighted>CraftingMaterials/StoneHighlight</SpriteHighlighted>
+      <MaxSize>10</MaxSize>
+      <ItemName>Stone</ItemName>
+      <Description>This is a piece of stone</Description>
+      <SellPrice>5</SellPrice>
+      <BuyPrice>10</BuyPrice>
+    </Item>
+    <Item xsi:type="CraftingMaterial">
+      <ItemType>CRAFTINGMATERIAL</ItemType>
+      <Quality>COMMON</Quality>
+      <SpriteNeutral>CraftingMaterials/IronNormal</SpriteNeutral>
+      <SpriteHighlighted>CraftingMaterials/IronHighlight</SpriteHighlighted>
+      <MaxSize>10</MaxSize>
+      <ItemName>Iron</ItemName>
+      <Description>This is an iron ingot</Description>
+      <SellPrice>5</SellPrice>
+      <BuyPrice>10</BuyPrice>
+    </Item>
+  </Materials>
+</ItemContainer>

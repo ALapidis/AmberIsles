@@ -11,6 +11,14 @@ TagManager:
   - 2H_Weapon
   - LootableCorpse
   - Enemy
+  - Vendor
+  - CraftingBench
+  - Chest
+  - Item
+  - EquipSlot
+  - Inventory
+  - Material
+  - PlayerBook
   layers:
   - Default
   - TransparentFX
