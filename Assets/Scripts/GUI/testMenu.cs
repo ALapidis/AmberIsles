@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class testMenu : MonoBehaviour {
 
+	public GameObject inputUI;
+
 	[SerializeField]
 	private Animator[] animators;	//Array of sections for the tab system to animate everything at once
 
@@ -48,9 +50,12 @@ public class testMenu : MonoBehaviour {
 			if (!animator.GetBool("menuIsOpen")) {
 				animator.SetTrigger("openMenu");
 				animator.SetBool("menuIsOpen", true);
+				inputUI.SetActive(false);
+
 			} else {
 				animator.SetTrigger("closeMenu");
 				animator.SetBool("menuIsOpen", false);
+				inputUI.SetActive(true);
 			}
 		}
 	}		
